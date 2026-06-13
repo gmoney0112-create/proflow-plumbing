@@ -4,7 +4,7 @@
   "description": "Remotion video production for ProFlow Plumbing — programmatic video with React",
   "scripts": {
     "start": "npx remotion studio src/index.ts",
-    "build": "npx remotion render src/index.ts ProFlowPromo out/proflow-promo.mp4",
+    "build": "vite build",
     "render:gif": "npx remotion render src/index.ts ProFlowPromo out/proflow-promo.gif --codec gif",
     "render:still": "npx remotion still src/index.ts ProFlowPromo out/thumbnail.png --frame=30",
     "preview": "npx remotion studio"

@@ -1,0 +1,23 @@
+{
+  "name": "proflow-plumbing-video",
+  "version": "1.0.0",
+  "description": "Remotion video production for ProFlow Plumbing — programmatic video with React",
+  "scripts": {
+    "start": "npx remotion studio src/index.ts",
+    "build": "npx remotion render src/index.ts ProFlowPromo out/proflow-promo.mp4",
+    "render:gif": "npx remotion render src/index.ts ProFlowPromo out/proflow-promo.gif --codec gif",
+    "render:still": "npx remotion still src/index.ts ProFlowPromo out/thumbnail.png --frame=30",
+    "preview": "npx remotion studio"
+  },
+  "dependencies": {
+    "@remotion/player": "^4.0.290",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.290"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "ts-node src/server.ts",
     "ingest": "ts-node src/ingest.ts",
     "server": "ts-node src/server.ts"
   },

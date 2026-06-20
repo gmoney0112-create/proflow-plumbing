@@ -2,7 +2,6 @@ import React from "react";
 import { Composition } from "remotion";
 import { ProFlowPromo } from "./ProFlowVideo";
 
-// 30-second video at 30fps = 900 frames
 const DURATION_FRAMES = 900;
 const FPS = 30;
 const WIDTH = 1920;

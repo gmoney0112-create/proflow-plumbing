@@ -2,6 +2,8 @@ import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { AnimatedText } from "../components/AnimatedText";
 import { WaterDrop, PipeFlow } from "../components/WaterDrop";
+import { AiVideoBackground } from "../components/AiVideoBackground";
+import { AI_VIDEO_CLIPS } from "../videoAssets";
 
 export const Intro: React.FC = () => {
   const frame = useCurrentFrame();
@@ -34,7 +36,6 @@ export const Intro: React.FC = () => {
       style={{
         width,
         height,
-        background: `radial-gradient(ellipse at 50% 50%, #0a1628 0%, #060d1a 60%, #020609 100%)`,
         position: "relative",
         overflow: "hidden",
         display: "flex",
@@ -44,6 +45,12 @@ export const Intro: React.FC = () => {
         opacity: bgOpacity,
       }}
     >
+      <AiVideoBackground
+        src={AI_VIDEO_CLIPS.intro.url}
+        fallbackGradient="radial-gradient(ellipse at 50% 50%, #0a1628 0%, #060d1a 60%, #020609 100%)"
+        overlayOpacity={0.55}
+      />
+
       {/* Animated grid overlay */}
       <div
         style={{

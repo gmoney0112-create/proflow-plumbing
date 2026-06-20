@@ -1,6 +1,8 @@
 import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { AnimatedText } from "../components/AnimatedText";
+import { AiVideoBackground } from "../components/AiVideoBackground";
+import { AI_VIDEO_CLIPS } from "../videoAssets";
 
 export const CallToAction: React.FC<{ localFrame: number }> = ({ localFrame }) => {
   const { width, height } = useVideoConfig();
@@ -24,7 +26,6 @@ export const CallToAction: React.FC<{ localFrame: number }> = ({ localFrame }) =
       style={{
         width,
         height,
-        background: "radial-gradient(ellipse at 50% 50%, #0d1f3c 0%, #060d1a 70%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -34,6 +35,12 @@ export const CallToAction: React.FC<{ localFrame: number }> = ({ localFrame }) =
         overflow: "hidden",
       }}
     >
+      <AiVideoBackground
+        src={AI_VIDEO_CLIPS.cta.url}
+        fallbackGradient="radial-gradient(ellipse at 50% 50%, #0d1f3c 0%, #060d1a 70%)"
+        overlayOpacity={0.6}
+      />
+
       {/* Animated background radial rings */}
       {[ring1, ring2].map((r, i) => (
         <div

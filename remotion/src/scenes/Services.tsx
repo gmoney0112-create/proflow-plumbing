@@ -1,6 +1,8 @@
 import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { AnimatedText } from "../components/AnimatedText";
+import { AiVideoBackground } from "../components/AiVideoBackground";
+import { AI_VIDEO_CLIPS } from "../videoAssets";
 
 const SERVICES = [
   {
@@ -149,7 +151,6 @@ export const Services: React.FC<{ localFrame: number }> = ({ localFrame }) => {
       style={{
         width,
         height,
-        background: "radial-gradient(ellipse at 20% 50%, #081428 0%, #04091a 70%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -159,6 +160,12 @@ export const Services: React.FC<{ localFrame: number }> = ({ localFrame }) => {
         overflow: "hidden",
       }}
     >
+      <AiVideoBackground
+        src={AI_VIDEO_CLIPS.services.url}
+        fallbackGradient="radial-gradient(ellipse at 20% 50%, #081428 0%, #04091a 70%)"
+        overlayOpacity={0.65}
+      />
+
       {/* Background decorative lines */}
       <div
         style={{

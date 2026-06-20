@@ -7,7 +7,8 @@
     "build": "vite build",
     "render:gif": "npx remotion render src/index.ts ProFlowPromo out/proflow-promo.gif --codec gif",
     "render:still": "npx remotion still src/index.ts ProFlowPromo out/thumbnail.png --frame=30",
-    "preview": "npx remotion studio"
+    "preview": "npx remotion studio",
+    "generate:ai": "node scripts/generate-ai-videos.mjs"
   },
   "dependencies": {
     "@remotion/player": "^4.0.290",

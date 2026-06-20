@@ -1,5 +1,7 @@
 import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AiVideoBackground } from "../components/AiVideoBackground";
+import { AI_VIDEO_CLIPS } from "../videoAssets";
 
 const STATS = [
   { value: 15, suffix: "+", label: "Years Experience", icon: "🏆" },
@@ -39,7 +41,6 @@ export const Stats: React.FC<{ localFrame: number }> = ({ localFrame }) => {
       style={{
         width,
         height,
-        background: "linear-gradient(135deg, #060d1a 0%, #0a1628 50%, #060d1a 100%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -49,6 +50,12 @@ export const Stats: React.FC<{ localFrame: number }> = ({ localFrame }) => {
         overflow: "hidden",
       }}
     >
+      <AiVideoBackground
+        src={AI_VIDEO_CLIPS.stats.url}
+        fallbackGradient="linear-gradient(135deg, #060d1a 0%, #0a1628 50%, #060d1a 100%)"
+        overlayOpacity={0.7}
+      />
+
       {/* Diagonal accent */}
       <div
         style={{

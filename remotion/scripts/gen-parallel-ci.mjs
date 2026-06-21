@@ -218,7 +218,7 @@ async function runwayGenerate(scene) {
       "Content-Type": "application/json",
       "X-Runway-Version": "2024-11-06",
     },
-    body: JSON.stringify({ promptText: prompt, model: "gen4.5", duration: 5, ratio: "1280:768" }),
+    body: JSON.stringify({ promptText: prompt, model: "gen4.5", duration: 5, ratio: "1280:720" }),
   });
   const body = await res.json();
   if (!res.ok) throw new Error(`Runway submit [${scene}]: ${res.status} ${JSON.stringify(body)}`);

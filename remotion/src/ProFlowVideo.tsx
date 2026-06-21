@@ -6,10 +6,10 @@ import { Stats } from "./scenes/Stats";
 import { CallToAction } from "./scenes/CallToAction";
 
 const SCENES = {
-  intro:    { from: 0,   duration: 150 },
-  services: { from: 150, duration: 270 },
-  stats:    { from: 420, duration: 210 },
-  cta:      { from: 630, duration: 270 },
+  intro:    { from: 0,    duration: 300 },
+  services: { from: 300,  duration: 600 },
+  stats:    { from: 900,  duration: 300 },
+  cta:      { from: 1200, duration: 600 },
 };
 
 const SceneTransition: React.FC<{ startFrame: number; duration?: number }> = ({ startFrame, duration = 20 }) => {

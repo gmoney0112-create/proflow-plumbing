@@ -2,7 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { ProFlowPromo } from "./ProFlowVideo";
 
-const DURATION_FRAMES = 900;
+const DURATION_FRAMES = 1800;
 const FPS = 30;
 const WIDTH = 1920;
 const HEIGHT = 1080;
@@ -21,7 +21,7 @@ export const Root: React.FC = () => {
       <Composition
         id="ProFlowShort"
         component={ProFlowPromo}
-        durationInFrames={450}
+        durationInFrames={900}
         fps={FPS}
         width={1080}
         height={1080}

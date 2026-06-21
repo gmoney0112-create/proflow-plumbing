@@ -40,7 +40,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, activeIndex }
 
 export const Services: React.FC<{ localFrame: number }> = ({ localFrame }) => {
   const { width, height } = useVideoConfig();
-  const activeIndex = Math.min(3, Math.floor(localFrame / 50));
+  const activeIndex = Math.min(3, Math.floor(localFrame / 150));
   const bgOpacity = interpolate(localFrame, [0, 20], [0, 1], { extrapolateRight: "clamp" });
   return (
     <div style={{ width, height, background: "radial-gradient(ellipse at 20% 50%, #081428 0%, #04091a 70%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", opacity: bgOpacity, position: "relative", overflow: "hidden" }}>

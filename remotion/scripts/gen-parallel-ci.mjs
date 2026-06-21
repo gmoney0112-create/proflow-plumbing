@@ -96,7 +96,7 @@ if (Object.keys(SCENES).length === 0) {
 
 // ── Provider: Replicate (Kling v2.0) ──────────────────────────────────────────
 
-const REPLICATE_MODEL = "kwaivgi/kling-v2.0-standard-text-to-video";
+const REPLICATE_MODEL = "kwaivgi/kling-v2.0";
 
 async function replicateGenerate(scene) {
   const { prompt, duration } = SCENES[scene];
@@ -218,7 +218,7 @@ async function runwayGenerate(scene) {
       "Content-Type": "application/json",
       "X-Runway-Version": "2024-11-06",
     },
-    body: JSON.stringify({ promptText: prompt, model: "gen4_turbo", duration: 5, ratio: "1280:768" }),
+    body: JSON.stringify({ promptText: prompt, model: "gen4.5", duration: 5, ratio: "1280:768" }),
   });
   const body = await res.json();
   if (!res.ok) throw new Error(`Runway submit [${scene}]: ${res.status} ${JSON.stringify(body)}`);

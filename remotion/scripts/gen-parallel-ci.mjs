@@ -207,7 +207,7 @@ async function falGenerate(scene) {
   }
 }
 
-// ── Provider: Runway Gen-3 ─────────────────────────────────────────────────────
+// ── Provider: Runway Gen-4 ─────────────────────────────────────────────────────
 
 async function runwayGenerate(scene) {
   const { prompt } = SCENES[scene];
@@ -218,7 +218,7 @@ async function runwayGenerate(scene) {
       "Content-Type": "application/json",
       "X-Runway-Version": "2024-11-06",
     },
-    body: JSON.stringify({ promptText: prompt, model: "gen3a_turbo", duration: 5, ratio: "1280:768" }),
+    body: JSON.stringify({ promptText: prompt, model: "gen4_turbo", duration: 5, ratio: "1280:768" }),
   });
   const body = await res.json();
   if (!res.ok) throw new Error(`Runway submit [${scene}]: ${res.status} ${JSON.stringify(body)}`);
@@ -243,12 +243,32 @@ async function runwayGenerate(scene) {
 
 // ── Per-scene orchestration ────────────────────────────────────────────────────
 
+// Ordered fallback chain — tries each provider in quality order until one succeeds
+const FALLBACK_CHAIN = [
+  ["runway",    runwayGenerate,    () => RUNWAY_KEY],
+  ["kling",     klingGenerate,     () => KLING_KEY],
+  ["replicate", replicateGenerate, () => REPLICATE_TOKEN],
+  ["fal",       falGenerate,       () => FAL_KEY],
+];
+
 async function generateVideo(scene) {
-  if (PRIMARY === "runway")    return runwayGenerate(scene);
-  if (PRIMARY === "kling")     return klingGenerate(scene);
-  if (PRIMARY === "replicate") return replicateGenerate(scene);
-  if (PRIMARY === "fal")       return falGenerate(scene);
-  throw new Error(`No provider available for [${scene}]`);
+  // Start from the detected primary provider and fall back down the chain
+  const startIdx = FALLBACK_CHAIN.findIndex(([name]) => name === PRIMARY);
+  for (let i = startIdx; i < FALLBACK_CHAIN.length; i++) {
+    const [name, fn, hasKey] = FALLBACK_CHAIN[i];
+    if (!hasKey()) continue;
+    try {
+      return await fn(scene);
+    } catch (e) {
+      const next = FALLBACK_CHAIN.slice(i + 1).find(([, , k]) => k());
+      if (next) {
+        console.warn(`[${scene}] ${name} failed (${e.message}), falling back to ${next[0]}…`);
+      } else {
+        throw e;
+      }
+    }
+  }
+  throw new Error(`All providers exhausted for [${scene}]`);
 }
 
 async function processScene(scene) {

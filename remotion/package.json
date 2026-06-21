@@ -11,7 +11,10 @@
     "preview": "npx remotion studio"
   },
   "dependencies": {
+    "@remotion/bundler": "^4.0.481",
+    "@remotion/cli": "^4.0.481",
     "@remotion/player": "^4.0.290",
+    "@remotion/renderer": "^4.0.481",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "remotion": "^4.0.290"

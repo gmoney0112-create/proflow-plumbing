@@ -142,7 +142,7 @@ async function klingGenerate(scene) {
       prompt,
       negative_prompt: "",
       cfg_scale: 0.5,
-      mode: "pro",
+      mode: "std",
       aspect_ratio: "16:9",
       duration: String(duration),
     }),

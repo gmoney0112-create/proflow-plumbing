@@ -211,7 +211,7 @@ async function falGenerate(scene) {
 
 async function runwayGenerate(scene) {
   const { prompt } = SCENES[scene];
-  const res = await fetch("https://api.runwayml.com/v1/text_to_video", {
+  const res = await fetch("https://api.dev.runwayml.com/v1/text_to_video", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${RUNWAY_KEY}`,
@@ -227,7 +227,7 @@ async function runwayGenerate(scene) {
 
   while (true) {
     await sleep(8000);
-    const r = await fetch(`https://api.runwayml.com/v1/tasks/${taskId}`, {
+    const r = await fetch(`https://api.dev.runwayml.com/v1/tasks/${taskId}`, {
       headers: { Authorization: `Bearer ${RUNWAY_KEY}`, "X-Runway-Version": "2024-11-06" },
     });
     const data = await r.json();
